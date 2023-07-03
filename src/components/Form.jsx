@@ -1,14 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { getCityImage, getTravelPlan } from "../utils/api";
+import { parseCityName } from "../utils/util";
+import { Autocomplete } from "@react-google-maps/api";
 
 const Form = () => {
   const [searchValue, setSearchValue] = useState("");
+  const autocompleteRef = useRef(null);
   const [durationValue, setDurationValue] = useState("");
+
   const [responseMessage, setResponseMessage] = useState("");
   const [cityImage, setCityImage] = useState("");
   const [loading, setLoading] = useState(false);
-  const dayMessages = responseMessage.split("\n\n");
   const [isResultReady, setIsResultReady] = useState(false);
+
+  console.log(searchValue);
+
+  const dayMessages = responseMessage.split("\n\n");
 
   useEffect(() => {
     if (cityImage !== "" && responseMessage !== "") {
@@ -19,30 +26,21 @@ const Form = () => {
     }
   }, [cityImage, responseMessage]);
 
-  useEffect(() => {
-    const keyDownHandler = (event) => {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        handleButtonClick();
-      }
-    };
-
-    document.addEventListener("keydown", keyDownHandler);
-
-    return () => {
-      document.removeEventListener("keydown", keyDownHandler);
-    };
-  }, []);
-
   const handleSearchChange = (event) => {
     setSearchValue(event.target.value);
   };
 
+  const handlePlaceSelect = () => {
+    const place = autocompleteRef.current.getPlace();
+    setSearchValue(place.formatted_address);
+  };
+
   const handleDurationChange = (event) => {
+    event.preventDefault();
     setDurationValue(event.target.value);
   };
 
-  const handleButtonClick = (event) => {
+  const handleButtonClick = () => {
     setLoading(true);
     setResponseMessage("");
     setCityImage("");
@@ -57,25 +55,29 @@ const Form = () => {
       });
   };
 
-  const parse = (word) => {
-    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-  };
-
   return (
-    <section className="mt-8 w-full max-w-xl sm:6">
+    <section className="mt-8 w-full max-w-xl sm:w-6/12">
       <div className="flex w-full gap-2 mb-1">
-        <div className="relative flex justify-center items-center w-9/12">
-          <input
-            type="text"
-            placeholder="Where are you planning to go? ✈️"
-            required
-            value={searchValue}
-            onChange={handleSearchChange}
-            className="url_input peer"
-          />
+        <div className="w-full">
+          <Autocomplete
+            onLoad={(autocomplete) => {
+              autocompleteRef.current = autocomplete;
+              autocomplete.setFields(["formatted_address"]);
+            }}
+            onPlaceChanged={handlePlaceSelect}
+          >
+            <input
+              type="text"
+              onChange={handleSearchChange}
+              placeholder="Where are you planning to go? ✈️"
+              required
+              value={searchValue}
+              className="url_input peer"
+            />
+          </Autocomplete>
         </div>
 
-        <div className="relative flex justify-center items-center w-3/12">
+        <div className="relative flex justify-center items-center w-2/12 sm:w-4/12">
           <input
             type="number"
             min={1}
@@ -91,7 +93,7 @@ const Form = () => {
       <button
         type="submit"
         className={
-          loading ? "w-full gray_btn bg-white " : "w-full gray_btn bg-white"
+          loading ? "w-full gray_btn bg-white" : "w-full gray_btn bg-white"
         }
         onClick={handleButtonClick}
       >
@@ -110,10 +112,10 @@ const Form = () => {
             <img
               src={cityImage}
               alt="City"
-              className="max-w-full w-full blur-sm h-64 object-fill rounded"
+              className="max-w-full w-full  h-64 object-fill rounded"
             />
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="image_text">{parse(searchValue)}</div>
+              <div className="image_text">{parseCityName(searchValue)}</div>
             </div>
           </div>
 
@@ -123,7 +125,7 @@ const Form = () => {
                 {message.split("\n").map((line, lineIndex) => (
                   <p
                     key={lineIndex}
-                    className={lineIndex === 0 ? "blue_gradient mb-2 " : "mb-2"}
+                    className={lineIndex === 0 ? "blue_gradient mb-2" : "mb-2"}
                   >
                     {line.replace("-", "🎈")}
                   </p>
