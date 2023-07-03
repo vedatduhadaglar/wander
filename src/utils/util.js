@@ -7,3 +7,23 @@ export const console_easteregg = `                                              
   \`8bd8'  \`8bd8'   88,    ,88 88       88 "8a,   ,d88 "8b,   ,aa 88          
     YP      YP     \`"8bbdP"Y8 88       88  \`"8bbdP"Y8  \`"Ybbd8"' 88"
 `;
+
+export const parseCityName = (input) => {
+  let city = input.split(",")[0].trim();
+  return city.charAt(0).toUpperCase() + city.slice(1).toLowerCase();
+};
+
+// useEffect(() => {
+//   const keyDownHandler = (event) => {
+//     if (event.key === "Enter") {
+//       event.preventDefault();
+//       handleButtonClick();
+//     }
+//   };
+
+//   document.addEventListener("keydown", keyDownHandler);
+
+//   return () => {
+//     document.removeEventListener("keydown", keyDownHandler);
+//   };
+// }, []);

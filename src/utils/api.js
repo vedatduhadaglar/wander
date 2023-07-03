@@ -1,22 +1,23 @@
 const API_KEY = import.meta.env.VITE_API_KEY;
+const GMAPS_API_KEY = import.meta.env.VITE_GMAPS_KEY;
 
 export function getCityImage(searchValue, setFunction) {
-  fetch(
-    `https://api.teleport.org/api/urban_areas/slug:${searchValue.toLowerCase()}/images/`
-  )
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Unable to fetch city images");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      const cityImage = data.photos[0].image.mobile;
-      setFunction(cityImage);
-    })
-    .catch((error) => {
-      console.error("Error fetching city images:", error);
-    });
+  const request = {
+    query: searchValue,
+    fields: ["photos"],
+    key: GMAPS_API_KEY,
+  };
+
+  const service = new window.google.maps.places.PlacesService(
+    document.createElement("div")
+  );
+
+  service.textSearch(request, (results, status) => {
+    if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+      const photo = results[0]?.photos[0]?.getUrl();
+      setFunction(photo || "");
+    }
+  });
 }
 
 export async function getTravelPlan(
@@ -36,7 +37,7 @@ export async function getTravelPlan(
         messages: [
           {
             role: "user",
-            content: `Create a ${durationValue} day itinirary travel plan to ${searchValue}. here is the example format i want: Day 1: Exploring the City , then put each activity in a new line. Here is the example format: "Day 1: Exploring the City (summary of the day)
+            content: `Create a ${durationValue} day itinirary travel plan to ${searchValue}. At the end display a rough estimate of the expenses. here is the example format i want: Day 1: Exploring the City , then put each activity in a new line. Here is the example format: "Day 1: Exploring the City (summary of the day)
 - Start with a visit to the iconic Independence Square (Maidan Nezalezhnosti) and learn about its historical significance
 - Take a stroll along Khreshchatyk Street, the main thoroughfare of Kyiv, and soak up the vibrant atmosphere
 - Head to St. Sophia's Cathedral, a breathtaking UNESCO World Heritage Site with stunning mosaics and frescoes 
@@ -48,7 +49,8 @@ Day 2: Cultural Immersion
 - Head to the legendary Kyiv Pechersk Lavra, a stunning monastery complex with cave churches, stunning architecture, and a beautiful view of the city 
 - Enjoy a traditional Ukrainian lunch at a local restaurant 
 - In the afternoon, explore the Andriyivskyi Uzviz, a charming cobblestone street lined with galleries, souvenir shops, and cafes 
-- Wrap up the day with a performance at the National Opera of Ukraine, a beautiful building and a cultural institution of the city`,
+- Wrap up the day with a performance at the National Opera of Ukraine, a beautiful building and a cultural institution of the city \n
+ Total Estimated Cost: 💲400`,
           },
         ],
       }),

@@ -74,18 +74,6 @@ main {
   opacity: 0.15;
 }
 
-.beach {
-  /* background-image: url(./assets/beach.gif); */
-  /* background-color: #ffc0cb;
-  background-size: 100% 100%;
-  background-repeat: no-repeat; */
-  /* background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 1) 23%,
-    rgba(255, 192, 203, 1) 100%
-  ); */
-}
-
 .glass {
   background: rgba(237, 236, 248, 0.23);
   border-radius: 16px;
@@ -174,7 +162,7 @@ main {
 }
 
 .image_text {
-  @apply text-5xl font-extrabold leading-[1.15] text-white sm:text-4xl text-center;
+  @apply text-5xl font-extrabold leading-[1.15] text-white sm:text-5xl text-center;
 }
 
 .orange_gradient {

@@ -16,6 +16,19 @@ const App = () => {
       placement: "bottomRight",
       duration: 8,
     });
+
+    notification.open({
+      message: "To-Do",
+      description: (
+        <div>
+          <p> Pressing Enter Issue ✔️</p>
+          <p> After the result loads the searchValue shouldnt change ✔️</p>
+          <p> Display only city name, not country✔️</p>
+        </div>
+      ),
+      placement: "bottomRight",
+      duration: 8,
+    });
   }, []);
 
   return (
