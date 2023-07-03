@@ -5,6 +5,7 @@ import { Autocomplete } from "@react-google-maps/api";
 
 const Form = () => {
   const [searchValue, setSearchValue] = useState("");
+  const [oldValue, setOldValue] = useState("");
   const autocompleteRef = useRef(null);
   const [durationValue, setDurationValue] = useState("");
 
@@ -17,6 +18,7 @@ const Form = () => {
 
   const dayMessages = responseMessage.split("\n\n");
 
+  // When both the image and the travel plan is fetched, resultready is true
   useEffect(() => {
     if (cityImage !== "" && responseMessage !== "") {
       setIsResultReady(true);
@@ -41,6 +43,7 @@ const Form = () => {
   };
 
   const handleButtonClick = () => {
+    setOldValue(searchValue);
     setLoading(true);
     setResponseMessage("");
     setCityImage("");
@@ -115,7 +118,7 @@ const Form = () => {
               className="max-w-full w-full  h-64 object-fill rounded"
             />
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="image_text">{parseCityName(searchValue)}</div>
+              <div className="image_text">{parseCityName(oldValue)}</div>
             </div>
           </div>
 
