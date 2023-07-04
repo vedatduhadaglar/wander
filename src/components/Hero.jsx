@@ -5,7 +5,7 @@ import { logo, github } from "../assets";
 const Hero = () => {
   return (
     <header className="w-full flex justify-center items-center flex-col">
-      <nav className="flex justify-between items-center w-full mb-6 pt-3 sm:mb-3">
+      <nav className="flex justify-between items-center w-11/12 mb-6 pt-3 sm:mb-3">
         <a href="">
           <div className="flex justify items-center">
             <img
