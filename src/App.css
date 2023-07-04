@@ -106,20 +106,40 @@ main {
     content: "☀️";
   }
 
+  10% {
+    content: "😎";
+  }
+
   20% {
     content: "🐳";
+  }
+
+  30% {
+    content: "🦀";
   }
 
   40% {
     content: "🚢";
   }
 
+  50% {
+    content: "🌼";
+  }
+
   60% {
     content: "🌎";
   }
 
+  70% {
+    content: "🍉";
+  }
+
   80% {
     content: "🏝️";
+  }
+
+  90% {
+    content: "🤩";
   }
 
   100% {

@@ -13,17 +13,4 @@ export const parseCityName = (input) => {
   return city.charAt(0).toUpperCase() + city.slice(1).toLowerCase();
 };
 
-// useEffect(() => {
-//   const keyDownHandler = (event) => {
-//     if (event.key === "Enter") {
-//       event.preventDefault();
-//       handleButtonClick();
-//     }
-//   };
 
-//   document.addEventListener("keydown", keyDownHandler);
-
-//   return () => {
-//     document.removeEventListener("keydown", keyDownHandler);
-//   };
-// }, []);
