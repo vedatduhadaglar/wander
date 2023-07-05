@@ -14,7 +14,7 @@ const App = () => {
       description:
         "Due to the high demand on the GPT API, load times might be long depending on what time you use the app. Sorry for the inconvinience, and good travelling.   \n -Vedat  ",
       placement: "bottomRight",
-      duration: 8,
+      duration: 12,
     });
   }, []);
 

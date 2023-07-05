@@ -1,20 +1,21 @@
 import React from "react";
 
-import { logo, github } from "../assets";
+import { logo, github, balloon } from "../assets";
 
 const Hero = () => {
   return (
     <header className="w-full flex justify-center items-center flex-col">
-      <nav className="flex justify-between items-center w-11/12 mb-6 pt-3 sm:mb-3">
+      <nav className="flex justify-between items-center w-10/12 mb-6 pt-3 mt-6 sm:mb-3">
         <a href="">
-          <div className="flex justify items-center">
+          <div className="flex justify items-center gap-2">
             <img
-              src={logo}
+              src={balloon}
               alt="logo"
-              className="w-20 md:w-28 sm:w-18 object-contain logo"
+              className="w-10 md:w-10 sm:w-10 object-contain"
             />
+
             <div className="logo_text ">
-              wander<span className="blue_gradient ">.ai</span>
+              wander<span className="blue_gradient hide">.ai</span>
             </div>
           </div>
         </a>
@@ -29,7 +30,7 @@ const Hero = () => {
       </nav>
 
       <h1 className="head_text text-justify">
-        Plan Your Journey<span className="logo">🗺️</span>{" "}
+        Plan Your Journey<span className="hide ml-1">🗺️</span>{" "}
         <br className="max-md:hidden" />
         <span className="blue_gradient ">Using OpenAI GPT-4</span>
       </h1>

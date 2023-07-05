@@ -87,7 +87,7 @@ const Form = () => {
               placeholder="Where are you planning to go? ✈️"
               required
               value={searchValue}
-              className="url_input peer"
+              className="input_styles peer"
             />
           </Autocomplete>
         </div>
@@ -100,7 +100,7 @@ const Form = () => {
             placeholder=" Days 🕑"
             required
             onChange={handleDurationChange}
-            className="url_input peer"
+            className="input_styles peer"
           />
         </div>
       </div>
@@ -108,7 +108,9 @@ const Form = () => {
       <button
         type="submit"
         className={
-          loading ? "w-full gray_btn bg-pink-200" : "w-full gray_btn bg-white"
+          loading
+            ? "w-full gray_btn bg-pink-200 input_styles"
+            : "w-full gray_btn bg-white input_styles"
         }
         onClick={handleButtonClick}
       >
