@@ -53,19 +53,25 @@ const Form = () => {
   };
 
   const handleButtonClick = () => {
-    setOldValue(searchValue);
-    setLoading(true);
-    setResponseMessage("");
-    setCityImage("");
-    Promise.all([
-      getTravelPlan(durationValue, searchValue, setResponseMessage),
-      getCityImage(searchValue, setCityImage),
-    ])
-      .then(() => setLoading(false))
-      .catch((error) => {
-        console.error("Error:", error);
-        setLoading(false);
-      });
+    if (searchValue === "") {
+      message.error("Whoops, you forgot to fill in your destination 😅");
+    } else if (durationValue === "") {
+      message.error("Don't forget to fill in your travelling duration 😴");
+    } else {
+      setOldValue(searchValue);
+      setLoading(true);
+      setResponseMessage("");
+      setCityImage("");
+      Promise.all([
+        getTravelPlan(durationValue, searchValue, setResponseMessage),
+        getCityImage(searchValue, setCityImage),
+      ])
+        .then(() => setLoading(false))
+        .catch((error) => {
+          console.error("Error:", error);
+          setLoading(false);
+        });
+    }
   };
 
   return (
