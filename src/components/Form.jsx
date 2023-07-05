@@ -15,9 +15,6 @@ const Form = () => {
   const [loading, setLoading] = useState(false);
   const [isResultReady, setIsResultReady] = useState(false);
 
-  console.log(searchValue);
-  console.log(loading);
-
   const dayMessages = responseMessage.split("\n\n");
 
   // When both the image and the travel plan is fetched, resultready is true
