@@ -159,6 +159,15 @@ main {
   }
 }
 
+@media (max-width: 480px) {
+  .logo {
+    display: none;
+  }
+  nav {
+    margin-top: 1rem;
+  }
+}
+
 /* Tailwind Styles */
 
 .app {

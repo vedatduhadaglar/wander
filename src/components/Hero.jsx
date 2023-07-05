@@ -11,7 +11,7 @@ const Hero = () => {
             <img
               src={logo}
               alt="logo"
-              className="w-20 md:w-28 sm:w-18 object-contain"
+              className="w-20 md:w-28 sm:w-18 object-contain logo"
             />
             <div className="logo_text ">
               wander<span className="blue_gradient ">.ai</span>
@@ -28,14 +28,15 @@ const Hero = () => {
         </a>
       </nav>
 
-      <h1 className="head_text">
-        Plan Your Journey🗺️ <br className="max-md:hidden" />
+      <h1 className="head_text text-justify">
+        Plan Your Journey<span className="logo">🗺️</span>{" "}
+        <br className="max-md:hidden" />
         <span className="blue_gradient ">Using OpenAI GPT-4</span>
       </h1>
-      <h2 className="desc">
+      <h2 className="desc text-justify">
         Say goodbye to hours of research and let Wander do the work for you,
         providing you with clear and comprehensive travel itineraries that fit
-        your preferences. Built by Vedat Daglar.
+        your preferences.
       </h2>
     </header>
   );

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { getCityImage, getTravelPlan } from "../utils/api";
 import { parseCityName } from "../utils/util";
 import { Autocomplete } from "@react-google-maps/api";
-import { message} from 'antd';
+import { message } from "antd";
 
 const Form = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -38,14 +38,14 @@ const Form = () => {
     setSearchValue(place.formatted_address);
   };
 
-  const displayPopUp = () =>{
-    message.error('Duration cannot be more than 7 days.', 3);
-  }
+  const displayPopUp = () => {
+    message.error("Duration cannot be more than 7 days.", 3);
+  };
 
   const handleDurationChange = (event) => {
     event.preventDefault();
-    if(event.target.value>7){
-      event.target.value=7
+    if (event.target.value > 7) {
+      event.target.value = 7;
       displayPopUp();
     }
     setDurationValue(event.target.value);
@@ -67,8 +67,6 @@ const Form = () => {
       });
   };
 
-
-
   return (
     <section className="mt-8 w-full max-w-xl sm:w-6/12">
       <div className="flex w-full gap-2 mb-1">
@@ -80,7 +78,7 @@ const Form = () => {
             }}
             onPlaceChanged={handlePlaceSelect}
             options={{
-              types: ["(cities)"], 
+              types: ["(cities)"],
             }}
           >
             <input
@@ -95,7 +93,6 @@ const Form = () => {
         </div>
 
         <div className="relative flex justify-center items-center w-2/12 sm:w-4/12">
-          
           <input
             type="number"
             min={1}
