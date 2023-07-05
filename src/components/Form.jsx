@@ -16,6 +16,7 @@ const Form = () => {
   const [isResultReady, setIsResultReady] = useState(false);
 
   console.log(searchValue);
+  console.log(loading);
 
   const dayMessages = responseMessage.split("\n\n");
 
@@ -109,7 +110,7 @@ const Form = () => {
         type="submit"
         className={
           loading
-            ? "w-full gray_btn bg-pink-200 input_styles"
+            ? "w-full gray_btn bg-pink-300 border border-gray-200 "
             : "w-full gray_btn bg-white input_styles"
         }
         onClick={handleButtonClick}

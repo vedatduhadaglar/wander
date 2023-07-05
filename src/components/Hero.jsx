@@ -5,7 +5,7 @@ import { logo, github, balloon } from "../assets";
 const Hero = () => {
   return (
     <header className="w-full flex justify-center items-center flex-col">
-      <nav className="flex justify-between items-center w-10/12 mb-6 pt-3 mt-6 sm:mb-3">
+      <nav className="flex justify-between items-center w-10/12 mb-8 pt-3 mt-6 sm:mb-3">
         <a href="">
           <div className="flex justify items-center gap-2">
             <img
@@ -15,7 +15,7 @@ const Hero = () => {
             />
 
             <div className="logo_text ">
-              wander<span className="blue_gradient hide">.ai</span>
+              wander<span className="blue_gradient hide"></span>
             </div>
           </div>
         </a>
