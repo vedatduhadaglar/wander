@@ -1,6 +1,6 @@
 import React from "react";
 
-import { logo, github, balloon } from "../assets";
+import { github, balloon } from "../assets";
 
 const Hero = () => {
   return (

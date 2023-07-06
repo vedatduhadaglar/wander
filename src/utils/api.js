@@ -1,28 +1,35 @@
 const API_KEY = import.meta.env.VITE_API_KEY;
 const GMAPS_API_KEY = import.meta.env.VITE_GMAPS_KEY;
 
-export function getCityImage(searchValue, setFunction) {
-  const request = {
-    query: searchValue,
-    fields: ["photos"],
-    key: GMAPS_API_KEY,
-  };
+export function getDestination(searchValue, setDestinationName, setImage) {
+  return new Promise((resolve, reject) => {
+    const request = {
+      query: searchValue,
+      fields: ["photos"],
+      key: GMAPS_API_KEY,
+    };
 
-  const service = new window.google.maps.places.PlacesService(
-    document.createElement("div")
-  );
+    const service = new window.google.maps.places.PlacesService(
+      document.createElement("div")
+    );
 
-  service.textSearch(request, (results, status) => {
-    if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-      const photo = results[0]?.photos[0]?.getUrl();
-      setFunction(photo || "");
-    }
+    service.textSearch(request, (results, status) => {
+      if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+        const city = results[0]?.name;
+        const photo = results[0]?.photos[0]?.getUrl();
+        setDestinationName(city);
+        setImage(photo || "");
+        resolve(city);
+      } else {
+        reject(new Error("Failed to get destination."));
+      }
+    });
   });
 }
 
 export async function getTravelPlan(
   durationValue,
-  searchValue,
+  destinationName,
   setResponseMessage
 ) {
   try {
@@ -37,7 +44,7 @@ export async function getTravelPlan(
         messages: [
           {
             role: "user",
-            content: `Create a ${durationValue} day itinirary travel plan to ${searchValue}. here is the example format i want: Day 1: Exploring the City , then put each activity in a new line. Here is the example format: "Day 1: Exploring the City (summary of the day)
+            content: `Create a ${durationValue} day itinerary travel plan to ${destinationName}. here is the example format i want: Day 1: Exploring the City, then put each activity in a new line. Here is the example format: "Day 1: Exploring the City (summary of the day)
 - Start with a visit to the iconic Independence Square (Maidan Nezalezhnosti) and learn about its historical significance
 - Take a stroll along Khreshchatyk Street, the main thoroughfare of Kyiv, and soak up the vibrant atmosphere
 - Head to St. Sophia's Cathedral, a breathtaking UNESCO World Heritage Site with stunning mosaics and frescoes 
@@ -50,7 +57,7 @@ Day 2: Cultural Immersion
 - Enjoy a traditional Ukrainian lunch at a local restaurant 
 - In the afternoon, explore the Andriyivskyi Uzviz, a charming cobblestone street lined with galleries, souvenir shops, and cafes 
 - Wrap up the day with a performance at the National Opera of Ukraine, a beautiful building and a cultural institution of the city \n
-  At the very end display a rough estimate of the expenses with the countrys currency and convert it to dollars, like this: Total Estimated Cost: 3700 hryvnia (approximately 💲100)`,
+  At the very end display a rough estimate of the expenses with the country's currency and convert it to dollars, like this: Total Estimated Cost: 3700 hryvnia (approximately 💲100)`,
           },
         ],
       }),
@@ -60,5 +67,19 @@ Day 2: Cultural Immersion
     setResponseMessage(message);
   } catch (error) {
     console.error("Error fetching travel plan:", error);
+    throw error;
   }
 }
+
+
+const console_easteregg = `                                                   88                        
+                                                   88                        
+                                                   88                        
+8b      db      d8 ,adPPYYba, 8b,dPPYba,   ,adPPYb,88  ,adPPYba, 8b,dPPYba,  
+\`8b    d88b    d8' ""     \`Y8 88P'   \`"8a a8"    \`Y88 a8P_____88 88P'   "Y8  
+ \`8b  d8'\`8b  d8'  ,adPPPPP88 88       88 8b       88 8PP""""""" 88          
+  \`8bd8'  \`8bd8'   88,    ,88 88       88 "8a,   ,d88 "8b,   ,aa 88          
+    YP      YP     \`"8bbdP"Y8 88       88  \`"8bbdP"Y8  \`"Ybbd8"' 88"
+`;
+
+console.log(`%c${console_easteregg}`, "color: blue");

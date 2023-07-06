@@ -3,10 +3,10 @@ import "./App.css";
 import { useEffect } from "react";
 import Form from "./components/Form";
 import { FloatButton, notification } from "antd";
-import { console_easteregg } from "./utils/util";
+
 
 const App = () => {
-  console.log(`%c${console_easteregg}`, "color: blue");
+
 
   useEffect(() => {
     notification.open({

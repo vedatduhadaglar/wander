@@ -1,15 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
-import { getCityImage, getTravelPlan } from "../utils/api";
-import { parseCityName } from "../utils/util";
+import { getDestination, getTravelPlan } from "../utils/api";
 import { Autocomplete } from "@react-google-maps/api";
 import { message } from "antd";
 
 const Form = () => {
   const [searchValue, setSearchValue] = useState("");
-  const [oldValue, setOldValue] = useState("");
   const autocompleteRef = useRef(null);
   const [durationValue, setDurationValue] = useState("");
-
+  const [destinationName, setDestinationName] = useState("")
   const [responseMessage, setResponseMessage] = useState("");
   const [cityImage, setCityImage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -49,27 +47,30 @@ const Form = () => {
     setDurationValue(event.target.value);
   };
 
-  const handleButtonClick = () => {
+  const handleButtonClick = async () => {
     if (searchValue === "") {
       message.error("Whoops, you forgot to fill in your destination 😅");
     } else if (durationValue === "") {
       message.error("Don't forget to fill in your travelling duration 😴");
     } else {
-      setOldValue(searchValue);
       setLoading(true);
       setResponseMessage("");
       setCityImage("");
-      Promise.all([
-        getTravelPlan(durationValue, searchValue, setResponseMessage),
-        getCityImage(searchValue, setCityImage),
-      ])
-        .then(() => setLoading(false))
-        .catch((error) => {
-          console.error("Error:", error);
-          setLoading(false);
-        });
+  
+
+      // TODO: Put this in a seperate function
+      try {
+        const destination = await getDestination(searchValue, setDestinationName, setCityImage);
+        await getTravelPlan(durationValue, destination, setResponseMessage);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error:", error);
+        setLoading(false);
+      }
     }
   };
+  
+  
 
   return (
     <section className="mt-8 w-full max-w-xl sm:w-6/12">
@@ -136,7 +137,7 @@ const Form = () => {
               className="max-w-full w-full  h-64 object-fill rounded"
             />
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="image_text">{parseCityName(oldValue)}</div>
+              <div className="image_text">{destinationName}</div>
             </div>
           </div>
 
