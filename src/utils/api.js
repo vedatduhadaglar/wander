@@ -1,4 +1,4 @@
-const API_KEY = import.meta.env.VITE_API_KEY;
+const API_KEY = import.meta.env.VITE_OPENAI_KEY;
 const GMAPS_API_KEY = import.meta.env.VITE_GMAPS_KEY;
 
 export function getDestination(searchValue, setDestinationName, setImage) {
