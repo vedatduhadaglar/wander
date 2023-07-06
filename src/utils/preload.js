@@ -1,10 +1,10 @@
-import { errorGif, balloon } from "../assets";
+// import { errorGif, balloon } from "../assets";
 
 
-const gif = new Image();
-gif.src=errorGif;
+// const gif = new Image();
+// gif.src=errorGif;
 
-const balloon_asset = new Image();
-balloon_asset.src=balloon;
+// const balloon_asset = new Image();
+// balloon_asset.src=balloon;
 
 
