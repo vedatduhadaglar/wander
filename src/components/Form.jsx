@@ -135,7 +135,7 @@ const Form = () => {
 
       {errorOccurred &&(<div className="glass rounded mt-4 mb-2">
      
-        <img className="fade" src={errorGif}></img>
+        <img className="fade w-full" src={errorGif}></img>
       </div>)}
 
       {isResultReady && (
