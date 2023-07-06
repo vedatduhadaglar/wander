@@ -71,7 +71,6 @@ Day 2: Cultural Immersion
   }
 }
 
-
 const console_easteregg = `                                                   88                        
                                                    88                        
                                                    88                        

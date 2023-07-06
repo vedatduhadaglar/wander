@@ -8,13 +8,12 @@ const Form = () => {
   const [searchValue, setSearchValue] = useState("");
   const autocompleteRef = useRef(null);
   const [durationValue, setDurationValue] = useState("");
-  const [destinationName, setDestinationName] = useState("")
+  const [destinationName, setDestinationName] = useState("");
   const [responseMessage, setResponseMessage] = useState("");
   const [cityImage, setCityImage] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorOccurred, setErrorOccurred] = useState(false);
   const [isResultReady, setIsResultReady] = useState(false);
-  
 
   const dayMessages = responseMessage.split("\n\n");
 
@@ -60,11 +59,14 @@ const Form = () => {
       setLoading(true);
       setResponseMessage("");
       setCityImage("");
-  
 
       // TODO: Put this in a seperate function
       try {
-        const destination = await getDestination(searchValue, setDestinationName, setCityImage);
+        const destination = await getDestination(
+          searchValue,
+          setDestinationName,
+          setCityImage
+        );
         await getTravelPlan(durationValue, destination, setResponseMessage);
         setLoading(false);
       } catch (error) {
@@ -74,8 +76,6 @@ const Form = () => {
       }
     }
   };
-  
-  
 
   return (
     <section className="mt-8 w-full max-w-xl sm:w-6/12">
@@ -133,10 +133,11 @@ const Form = () => {
         )}
       </button>
 
-      {errorOccurred &&(<div className="glass rounded mt-4 mb-2">
-     
-        <img className="fade w-full" src={errorGif}></img>
-      </div>)}
+      {errorOccurred && (
+        <div className="glass rounded mt-4 mb-2">
+          <img className="fade w-full" src={errorGif}></img>
+        </div>
+      )}
 
       {isResultReady && (
         <div className="fade">

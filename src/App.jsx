@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import Form from "./components/Form";
 import { FloatButton, notification } from "antd";
 
-// test
 const App = () => {
   useEffect(() => {
     notification.open({
@@ -17,7 +16,7 @@ const App = () => {
   }, []);
 
   return (
-    <main>
+    <main className="fade">
       <div className="main">
         <div className="gradient" />
       </div>
