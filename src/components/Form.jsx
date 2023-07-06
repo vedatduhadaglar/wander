@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { getDestination, getTravelPlan } from "../utils/api";
 import { Autocomplete } from "@react-google-maps/api";
 import { message } from "antd";
+import { errorGif } from "../assets";
 
 const Form = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -11,7 +12,9 @@ const Form = () => {
   const [responseMessage, setResponseMessage] = useState("");
   const [cityImage, setCityImage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [errorOccurred, setErrorOccurred] = useState(false);
   const [isResultReady, setIsResultReady] = useState(false);
+  
 
   const dayMessages = responseMessage.split("\n\n");
 
@@ -53,6 +56,7 @@ const Form = () => {
     } else if (durationValue === "") {
       message.error("Don't forget to fill in your travelling duration 😴");
     } else {
+      setErrorOccurred(false);
       setLoading(true);
       setResponseMessage("");
       setCityImage("");
@@ -64,7 +68,8 @@ const Form = () => {
         await getTravelPlan(durationValue, destination, setResponseMessage);
         setLoading(false);
       } catch (error) {
-        console.error("Error:", error);
+        console.error("Error called from handlebutton", error);
+        setErrorOccurred(true);
         setLoading(false);
       }
     }
@@ -128,8 +133,13 @@ const Form = () => {
         )}
       </button>
 
+      {errorOccurred &&(<div className="glass rounded mt-4 mb-2">
+     
+        <img className="fade" src={errorGif}></img>
+      </div>)}
+
       {isResultReady && (
-        <div className="result">
+        <div className="fade">
           <div className="mt-4 relative">
             <img
               src={cityImage}

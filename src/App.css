@@ -82,8 +82,8 @@ main {
   -webkit-backdrop-filter: blur(14px);
 }
 
-.result {
-  animation: fadeInAnimation ease 2s;
+.fade {
+  animation: fadeInAnimation ease 1s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
@@ -166,7 +166,9 @@ main {
 	border-radius: 10px;
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 	/* background-color: #D62929; */
-  background-color: gray;
+	background-color: gray;
+  
+
 }
 
 @media screen and (max-width: 640px) {
