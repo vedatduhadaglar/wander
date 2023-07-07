@@ -56,8 +56,15 @@ Day 2: Cultural Immersion
 - Head to the legendary Kyiv Pechersk Lavra, a stunning monastery complex with cave churches, stunning architecture, and a beautiful view of the city 
 - Enjoy a traditional Ukrainian lunch at a local restaurant 
 - In the afternoon, explore the Andriyivskyi Uzviz, a charming cobblestone street lined with galleries, souvenir shops, and cafes 
-- Wrap up the day with a performance at the National Opera of Ukraine, a beautiful building and a cultural institution of the city \n
-  At the very end display a rough estimate of the expenses with the country's currency and convert it to dollars, like this: Total Estimated Cost: 3700 hryvnia (approximately 💲100)`,
+- Wrap up the day with a performance at the National Opera of Ukraine, a beautiful building and a cultural institution of the city 
+At the end do a budget estimation for based on accomodation, eating etc. Here is an example:
+Budget Estimation
+- Accommodation: On average, budget accommodation in Eskilstuna ranges from $60 to $100 per night.
+- Eating: Budget around $20 to $40 per day for meals, including breakfast, lunch, and dinner.
+- Activities: Entrance fees for museums and attractions range from $5 to $15 per person.
+- Transportation: Public transportation within Eskilstuna is affordable, with single tickets costing around $2 to $5. Additional costs may be incurred for bike rentals and boat tours.
+- Overall, a 3-day trip to Eskilstuna can be estimated to cost between $200 and $500, depending on your accommodation and dining preferences.
+`,
           },
         ],
       }),

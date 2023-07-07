@@ -155,7 +155,11 @@ const Form = () => {
 
           {dayMessages.length > 1 &&
             dayMessages.map((message, index) => (
-              <Card message={message} key={index} />
+              <Card
+                message={message}
+                key={index}
+                isLastCard={index === dayMessages.length - 1}
+              />
             ))}
         </div>
       )}
