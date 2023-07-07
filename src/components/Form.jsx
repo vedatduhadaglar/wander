@@ -3,9 +3,12 @@ import Card from "./Card";
 import { getDestination, getTravelPlan } from "../utils/api";
 import { Autocomplete } from "@react-google-maps/api";
 import { message } from "antd";
-import { errorGif } from "../assets";
+import { errorGif, balloon, weather } from "../assets";
+import { FloatButton } from "antd";
 
 const Form = () => {
+  const gifIcon = <img src={weather} alt="GIF icon" />;
+  const gifIcon2 = <img src={balloon} alt="GIF icon" />;
   const [searchValue, setSearchValue] = useState("");
   const autocompleteRef = useRef(null);
   const [durationValue, setDurationValue] = useState("");
@@ -163,6 +166,14 @@ const Form = () => {
             ))}
         </div>
       )}
+
+      <FloatButton.Group>
+        {/* TODO: Add weather API call  */}
+        {cityImage !== "" && responseMessage !== "" && (
+          <FloatButton icon={gifIcon} />
+        )}
+        <FloatButton.BackTop icon={gifIcon2} />
+      </FloatButton.Group>
     </section>
   );
 };

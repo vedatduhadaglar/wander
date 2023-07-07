@@ -1,4 +1,5 @@
 import github from "./github.svg";
 import balloon from "./balloon.gif";
 import errorGif from "./errorgif.gif";
-export { github, balloon, errorGif };
+import weather from "./weather.gif";
+export { github, balloon, errorGif, weather };
