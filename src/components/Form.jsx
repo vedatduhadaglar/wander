@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import Card from "./Card";
 import { getDestination, getTravelPlan } from "../utils/api";
 import { Autocomplete } from "@react-google-maps/api";
 import { message } from "antd";
@@ -154,16 +155,7 @@ const Form = () => {
 
           {dayMessages.length > 1 &&
             dayMessages.map((message, index) => (
-              <div className="glass mt-4 mb-2 p-3" key={index}>
-                {message.split("\n").map((line, lineIndex) => (
-                  <p
-                    key={lineIndex}
-                    className={lineIndex === 0 ? "blue_gradient mb-2" : "mb-2"}
-                  >
-                    {line.replace("-", "🎈")}
-                  </p>
-                ))}
-              </div>
+              <Card message={message} key={index} />
             ))}
         </div>
       )}
