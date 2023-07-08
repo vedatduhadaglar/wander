@@ -9,14 +9,14 @@ const Form = () => {
   const balloonIcon = (
     <img
       src={balloon}
-      style={{ width: "30px", height: "30px" }}
+      style={{ width: "20px", height: "20px" }}
       alt="GIF icon"
     />
   );
   const weatherIcon = (
     <img
       src={weather}
-      style={{ width: "30px", height: "30px" }}
+      style={{ width: "20px", height: "20px" }}
       alt="GIF icon"
     />
   );
@@ -169,8 +169,14 @@ const Form = () => {
           </div>
           <Tabs>
             <TabList>
-              <Tab>{balloonIcon}</Tab>
-              <Tab>{weatherIcon}</Tab>
+              <Tab>
+                {balloonIcon}
+                {<b>Travel</b>}
+              </Tab>
+              <Tab>
+                {weatherIcon}
+                {<b>Weather</b>}
+              </Tab>
             </TabList>
 
             <TabPanels>
@@ -184,7 +190,7 @@ const Form = () => {
                     />
                   ))}
               </TabPanel>
-              <TabPanel>Soon You Will See the Weather Here! ⛈🙂</TabPanel>
+              <TabPanel>Soon⛈🙂</TabPanel>
             </TabPanels>
           </Tabs>
         </div>
