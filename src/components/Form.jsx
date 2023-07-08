@@ -2,13 +2,25 @@ import React, { useState, useEffect, useRef } from "react";
 import Card from "./Card";
 import { getDestination, getTravelPlan } from "../utils/api";
 import { Autocomplete } from "@react-google-maps/api";
-import { message } from "antd";
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import { errorGif, balloon, weather } from "../assets";
-import { FloatButton } from "antd";
 
 const Form = () => {
-  const gifIcon = <img src={weather} alt="GIF icon" />;
-  const gifIcon2 = <img src={balloon} alt="GIF icon" />;
+  const balloonIcon = (
+    <img
+      src={balloon}
+      style={{ width: "30px", height: "30px" }}
+      alt="GIF icon"
+    />
+  );
+  const weatherIcon = (
+    <img
+      src={weather}
+      style={{ width: "30px", height: "30px" }}
+      alt="GIF icon"
+    />
+  );
+
   const [searchValue, setSearchValue] = useState("");
   const autocompleteRef = useRef(null);
   const [durationValue, setDurationValue] = useState("");
@@ -55,9 +67,9 @@ const Form = () => {
 
   const handleButtonClick = async () => {
     if (searchValue === "") {
-      message.error("Whoops, you forgot to fill in your destination 😅");
+      console.log("Whoops, you forgot to fill in your destination 😅");
     } else if (durationValue === "") {
-      message.error("Don't forget to fill in your travelling duration 😴");
+      console.log("Don't forget to fill in your travelling duration 😴");
     } else {
       setErrorOccurred(false);
       setLoading(true);
@@ -145,7 +157,7 @@ const Form = () => {
 
       {isResultReady && (
         <div className="fade">
-          <div className="mt-4 relative">
+          <div className="mt-4 mb-6 relative">
             <img
               src={cityImage}
               alt="City"
@@ -155,25 +167,28 @@ const Form = () => {
               <div className="image_text">{destinationName}</div>
             </div>
           </div>
+          <Tabs>
+            <TabList>
+              <Tab>{balloonIcon}</Tab>
+              <Tab>{weatherIcon}</Tab>
+            </TabList>
 
-          {dayMessages.length > 1 &&
-            dayMessages.map((message, index) => (
-              <Card
-                message={message}
-                key={index}
-                isLastCard={index === dayMessages.length - 1}
-              />
-            ))}
+            <TabPanels>
+              <TabPanel>
+                {dayMessages.length > 1 &&
+                  dayMessages.map((message, index) => (
+                    <Card
+                      message={message}
+                      key={index}
+                      isLastCard={index === dayMessages.length - 1}
+                    />
+                  ))}
+              </TabPanel>
+              <TabPanel>Soon You Will See the Weather Here! ⛈🙂</TabPanel>
+            </TabPanels>
+          </Tabs>
         </div>
       )}
-
-      <FloatButton.Group>
-        {/* TODO: Add weather API call  */}
-        {cityImage !== "" && responseMessage !== "" && (
-          <FloatButton icon={gifIcon} />
-        )}
-        <FloatButton.BackTop icon={gifIcon2} />
-      </FloatButton.Group>
     </section>
   );
 };
