@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import Card from "./Card";
-import { getDestination, getTravelPlan } from "../utils/api";
+import {
+  getDestination,
+  getTravelPlan,
+  fetchWeatherForecast,
+} from "../utils/api";
 import { Autocomplete } from "@react-google-maps/api";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import { errorGif, balloon, weather } from "../assets";
@@ -9,14 +13,14 @@ const Form = () => {
   const balloonIcon = (
     <img
       src={balloon}
-      style={{ width: "20px", height: "20px" }}
+      style={{ width: "20px", height: "20px", marginRight: "3px" }}
       alt="GIF icon"
     />
   );
   const weatherIcon = (
     <img
       src={weather}
-      style={{ width: "20px", height: "20px" }}
+      style={{ width: "20px", height: "20px", marginRight: "3px" }}
       alt="GIF icon"
     />
   );
@@ -190,7 +194,11 @@ const Form = () => {
                     />
                   ))}
               </TabPanel>
-              <TabPanel>Soon⛈🙂</TabPanel>
+              <TabPanel>
+                <div className="glass mt-4 mb-2 p-3" data-aos="fade-right">
+                  <h1>Daily Weather Display</h1>
+                </div>
+              </TabPanel>
             </TabPanels>
           </Tabs>
         </div>

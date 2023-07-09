@@ -1,6 +1,9 @@
 const API_KEY = import.meta.env.VITE_OPENAI_KEY;
 const GMAPS_API_KEY = import.meta.env.VITE_GMAPS_KEY;
+const OPEN_WEATHER_KEY = import.meta.env.VITE_WEATHER_API;
+console.log(OPEN_WEATHER_KEY);
 
+// Google Places API
 export function getDestination(searchValue, setDestinationName, setImage) {
   return new Promise((resolve, reject) => {
     const request = {
@@ -27,6 +30,7 @@ export function getDestination(searchValue, setDestinationName, setImage) {
   });
 }
 
+// GPT API
 export async function getTravelPlan(
   durationValue,
   destinationName,
@@ -77,6 +81,19 @@ Budget Estimation
     throw error;
   }
 }
+
+// Weather API
+export const fetchWeatherForecast = () => {
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=${OPEN_WEATHER_KEY}`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) => {
+      console.error("Error fetching weather forecast:", error);
+    });
+};
 
 const console_easteregg = `                                                   88                        
                                                    88                        
