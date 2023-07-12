@@ -153,6 +153,12 @@
   background-color: gray;
 }
 
+@media screen and (min-width: 1400px) {
+  main {
+    zoom: 125%;
+  }
+}
+
 @media screen and (max-width: 640px) {
   .main {
     padding: 0;
