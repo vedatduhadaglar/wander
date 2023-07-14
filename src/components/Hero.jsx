@@ -5,7 +5,7 @@ import { github, balloon } from "../assets";
 const Hero = () => {
   return (
     <header className="w-full flex justify-center items-center flex-col">
-      <nav className="flex justify-between items-center w-10/12 mb-8 pt-3 mt-6 sm:mb-3">
+      <nav className="flex justify-between items-center w-full sm:w-10/12 mb-8 pt-3 mt-6 sm:mb-3">
         <a href="">
           <div className="flex justify items-center gap-2">
             <img
@@ -23,7 +23,7 @@ const Hero = () => {
         <a href="https://github.com/vedatduhadaglar" target="_blank">
           <img
             src={github}
-            className="w-7 h-7 sm:w-8 sm:h-8 transition-transform transform-gpu hover:scale-125 cursor-pointer"
+            className="w-7 h-7 sm:w-8 sm:h-8 transition-transform transform-gpu hover:scale-125 cursor-pointer mr-1"
             alt="GitHub"
           />
         </a>

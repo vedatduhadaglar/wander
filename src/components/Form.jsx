@@ -10,28 +10,28 @@ import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import { errorGif, balloon, weather, hotel } from "../assets";
 
 const Form = () => {
-  const balloonIcon = (
-    <img
-      src={balloon}
-      style={{ width: "20px", height: "20px", marginRight: "3px" }}
-      alt="GIF icon"
-    />
-  );
-  const weatherIcon = (
-    <img
-      src={weather}
-      style={{ width: "20px", height: "20px", marginRight: "3px" }}
-      alt="GIF icon"
-    />
-  );
+  // const balloonIcon = (
+  //   <img
+  //     src={balloon}
+  //     style={{ width: "20px", height: "20px", marginRight: "3px" }}
+  //     alt="GIF icon"
+  //   />
+  // );
+  // const weatherIcon = (
+  //   <img
+  //     src={weather}
+  //     style={{ width: "20px", height: "20px", marginRight: "3px" }}
+  //     alt="GIF icon"
+  //   />
+  // );
 
-  const hotelIcon = (
-    <img
-      src={hotel}
-      style={{ width: "20px", height: "20px", marginRight: "3px" }}
-      alt="GIF icon"
-    />
-  );
+  // const hotelIcon = (
+  //   <img
+  //     src={hotel}
+  //     style={{ width: "20px", height: "20px", marginRight: "3px" }}
+  //     alt="GIF icon"
+  //   />
+  // );
 
   const [searchValue, setSearchValue] = useState("");
   const autocompleteRef = useRef(null);
@@ -187,15 +187,15 @@ const Form = () => {
             >
               <Tab>
                 {/* {balloonIcon} */}
-                {<b>Travel ✈️</b>}
+                {<b>✈️ Travel </b>}
               </Tab>
               <Tab>
                 {/* {weatherIcon} */}
-                {<b>Weather ⛈️</b>}
+                {<b>⛈️ Weather </b>}
               </Tab>
               <Tab>
                 {/* {hotelIcon} */}
-                {<b>Hotels 🏨</b>}
+                {<b>🏨 Hotels</b>}
               </Tab>
             </TabList>
 
