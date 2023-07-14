@@ -10,29 +10,6 @@ import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import { errorGif, balloon, weather, hotel } from "../assets";
 
 const Form = () => {
-  // const balloonIcon = (
-  //   <img
-  //     src={balloon}
-  //     style={{ width: "20px", height: "20px", marginRight: "3px" }}
-  //     alt="GIF icon"
-  //   />
-  // );
-  // const weatherIcon = (
-  //   <img
-  //     src={weather}
-  //     style={{ width: "20px", height: "20px", marginRight: "3px" }}
-  //     alt="GIF icon"
-  //   />
-  // );
-
-  // const hotelIcon = (
-  //   <img
-  //     src={hotel}
-  //     style={{ width: "20px", height: "20px", marginRight: "3px" }}
-  //     alt="GIF icon"
-  //   />
-  // );
-
   const [searchValue, setSearchValue] = useState("");
   const autocompleteRef = useRef(null);
   const [durationValue, setDurationValue] = useState("");
@@ -42,8 +19,13 @@ const Form = () => {
   const [loading, setLoading] = useState(false);
   const [errorOccurred, setErrorOccurred] = useState(false);
   const [isResultReady, setIsResultReady] = useState(false);
+  const [activeTab, setActiveTab] = useState(0);
 
   const dayMessages = responseMessage.split("\n\n");
+
+  const handleTabChange = (index) => {
+    setActiveTab(index);
+  };
 
   // When both the image and the travel plan is fetched, resultready is true
   useEffect(() => {
@@ -179,7 +161,7 @@ const Form = () => {
               <div className="image_text">{destinationName}</div>
             </div>
           </div>
-          <Tabs>
+          <Tabs index={activeTab} onChange={handleTabChange}>
             <TabList
               className="mx-auto"
               width={"75%"}
@@ -187,11 +169,11 @@ const Form = () => {
             >
               <Tab>
                 {/* {balloonIcon} */}
-                {<b>✈️ Travel </b>}
+                {<b>✈️ Travel</b>}
               </Tab>
               <Tab>
                 {/* {weatherIcon} */}
-                {<b>⛈️ Weather </b>}
+                {<b>⛈️ Weather</b>}
               </Tab>
               <Tab>
                 {/* {hotelIcon} */}
@@ -201,7 +183,9 @@ const Form = () => {
 
             <TabPanels>
               <TabPanel>
-                {dayMessages.length > 1 &&
+                {/* Conditionally render content based on activeTab */}
+                {activeTab === 0 &&
+                  dayMessages.length > 1 &&
                   dayMessages.map((message, index) => (
                     <Card
                       message={message}
@@ -211,30 +195,37 @@ const Form = () => {
                   ))}
               </TabPanel>
               <TabPanel>
-                <div className="glass mt-4 mb-2 p-3">
-                  <h1 className="orange_gradient text-lg mb-64">
-                    Daily Weather Display
-                  </h1>
-                </div>
+                {/* Conditionally render content based on activeTab */}
+                {activeTab === 1 && (
+                  <div className="glass mt-4 mb-2 p-3">
+                    <h1 className="orange_gradient text-lg mb-64">
+                      Daily Weather Display
+                    </h1>
+                  </div>
+                )}
               </TabPanel>
               <TabPanel>
-                <div className="glass mt-4 mb-2 p-3">
-                  <h1 className="red_gradient">Hotel Booking</h1>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Architecto, accusamus eos! Magnam iste assumenda sapiente.
-                    Modi non cum iste doloribus qui quos atque itaque
-                    reprehenderit necessitatibus esse iure, veniam in? Lorem
-                    ipsum dolor, sit amet consectetur adipisicing elit. Veniam
-                    labore quasi adipisci sequi dignissimos cupiditate debitis?
-                    Aliquid excepturi, rerum autem quam totam suscipit
-                    voluptates ratione, obcaecati adipisci modi illum laborum!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo
-                    inventore repellendus optio, tempora soluta sit dignissimos
-                    tenetur ut odit quidem. Officiis ratione laudantium non
-                    aspernatur aperiam autem est saepe modi.
-                  </p>
-                </div>
+                {/* Conditionally render content based on activeTab */}
+                {activeTab === 2 && (
+                  <div className="glass mt-4 mb-2 p-3">
+                    <h1 className="red_gradient">Hotel Booking</h1>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Architecto, accusamus eos! Magnam iste assumenda sapiente.
+                      Modi non cum iste doloribus qui quos atque itaque
+                      reprehenderit necessitatibus esse iure, veniam in? Lorem
+                      ipsum dolor, sit amet consectetur adipisicing elit. Veniam
+                      labore quasi adipisci sequi dignissimos cupiditate
+                      debitis? Aliquid excepturi, rerum autem quam totam
+                      suscipit voluptates ratione, obcaecati adipisci modi illum
+                      laborum! Lorem ipsum dolor sit amet consectetur
+                      adipisicing elit. Quo inventore repellendus optio, tempora
+                      soluta sit dignissimos tenetur ut odit quidem. Officiis
+                      ratione laudantium non aspernatur aperiam autem est saepe
+                      modi.
+                    </p>
+                  </div>
+                )}
               </TabPanel>
             </TabPanels>
           </Tabs>

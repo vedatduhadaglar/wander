@@ -228,7 +228,7 @@
 }
 
 .orange_gradient {
-  @apply font-black bg-gradient-to-r from-amber-500 via-pink-200 to-pink-500 bg-clip-text text-transparent;
+  @apply font-black bg-gradient-to-r from-amber-500 to-red-600 bg-clip-text text-transparent;
 }
 
 .red_gradient {
