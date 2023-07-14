@@ -211,15 +211,15 @@ const Form = () => {
                   ))}
               </TabPanel>
               <TabPanel>
-                <div className="glass mt-4 mb-2 p-3" data-aos="fade-right">
+                <div className="glass mt-4 mb-2 p-3">
                   <h1 className="orange_gradient text-lg mb-64">
                     Daily Weather Display
                   </h1>
                 </div>
               </TabPanel>
               <TabPanel>
-                <div className="glass mt-4 mb-2 p-3" data-aos="fade-right">
-                  <h1 className="red_gradient mb-64">Hotel Booking</h1>
+                <div className="glass mt-4 mb-2 p-3">
+                  <h1 className="mb-64">Hotel Booking</h1>
                 </div>
               </TabPanel>
             </TabPanels>

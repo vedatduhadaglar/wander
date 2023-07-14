@@ -1,7 +1,7 @@
 import React from "react";
 const Card = ({ message, isLastCard }) => {
   return (
-    <div className="glass mt-4 mb-2 p-3" data-aos="fade-right">
+    <div className="glass mt-4 mb-2 p-3">
       {message.split("\n").map((line, lineIndex) => (
         <p
           key={lineIndex}
