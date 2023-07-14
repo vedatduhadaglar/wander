@@ -7,7 +7,7 @@ import {
 } from "../utils/api";
 import { Autocomplete } from "@react-google-maps/api";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-import { errorGif, balloon, weather } from "../assets";
+import { errorGif, balloon, weather, hotel } from "../assets";
 
 const Form = () => {
   const balloonIcon = (
@@ -20,6 +20,14 @@ const Form = () => {
   const weatherIcon = (
     <img
       src={weather}
+      style={{ width: "20px", height: "20px", marginRight: "3px" }}
+      alt="GIF icon"
+    />
+  );
+
+  const hotelIcon = (
+    <img
+      src={hotel}
       style={{ width: "20px", height: "20px", marginRight: "3px" }}
       alt="GIF icon"
     />
@@ -172,7 +180,11 @@ const Form = () => {
             </div>
           </div>
           <Tabs>
-            <TabList>
+            <TabList
+              className="mx-auto"
+              width={"75%"}
+              justifyContent={"center"}
+            >
               <Tab>
                 {balloonIcon}
                 {<b>Travel</b>}
@@ -180,6 +192,10 @@ const Form = () => {
               <Tab>
                 {weatherIcon}
                 {<b>Weather</b>}
+              </Tab>
+              <Tab>
+                {hotelIcon}
+                {<b>Hotels</b>}
               </Tab>
             </TabList>
 
@@ -196,7 +212,14 @@ const Form = () => {
               </TabPanel>
               <TabPanel>
                 <div className="glass mt-4 mb-2 p-3" data-aos="fade-right">
-                  <h1>Daily Weather Display</h1>
+                  <h1 className="orange_gradient text-lg mb-64">
+                    Daily Weather Display
+                  </h1>
+                </div>
+              </TabPanel>
+              <TabPanel>
+                <div className="glass mt-4 mb-2 p-3" data-aos="fade-right">
+                  <h1 className="red_gradient mb-64">Hotel Booking</h1>
                 </div>
               </TabPanel>
             </TabPanels>

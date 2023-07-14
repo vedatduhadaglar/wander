@@ -133,6 +133,27 @@
   }
 }
 
+.pac-item {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+/* Additional styles for Autocomplete dropdown item on hover */
+.pac-item:hover {
+  background-color: rgb(251 207 232);
+}
+
+.pac-icon {
+  display: none;
+}
+
+.pac-item::before {
+  /* Styles for the custom icon */
+  content: "🎈";
+  display: inline-block;
+  font-size: 1rem;
+  margin-right: 0.2rem;
+  /* background-image: url(""); */
+}
+
 /* Scrollbar styling */
 ::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -155,7 +176,7 @@
 
 @media screen and (min-width: 1400px) {
   main {
-    zoom: 125%;
+    /* zoom: 110%; */
   }
 }
 
@@ -207,7 +228,11 @@
 }
 
 .orange_gradient {
-  @apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent;
+  @apply font-black bg-gradient-to-r from-amber-500 via-pink-200 to-pink-500 bg-clip-text text-transparent;
+}
+
+.red_gradient {
+  @apply font-black bg-gradient-to-r from-red-500 to-pink-400 bg-clip-text text-transparent text-lg;
 }
 
 .desc {
@@ -236,4 +261,8 @@
 
 .summary_box {
   @apply rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-4;
+}
+
+.pac-item {
+  @apply font-satoshi;
 }
