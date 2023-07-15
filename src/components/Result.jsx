@@ -1,7 +1,8 @@
 import React from "react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import Card from "./Card";
-
+import { useState, useEffect } from "react";
+import { weather } from "../assets";
 const Result = ({
   cityImage,
   destinationName,
@@ -9,6 +10,15 @@ const Result = ({
   handleTabChange,
   dayMessages,
 }) => {
+  // const [weatherFetched, setWeatherFetched] = useState(false);
+
+  // useEffect(() => {
+  //   if (activeTab === 1 && !weatherFetched) {
+  //     console.log("weather");
+  //     setWeatherFetched(true);
+  //   }
+  // }, []);
+
   return (
     <div className="fade">
       <div className="mt-4 mb-6 relative">
@@ -28,23 +38,13 @@ const Result = ({
           justifyContent={"center"}
           gap={"1rem"}
         >
-          <Tab>
-            {/* {balloonIcon} */}
-            {<b>✈️ Travel</b>}
-          </Tab>
-          <Tab>
-            {/* {weatherIcon} */}
-            {<b>⛈️ Weather</b>}
-          </Tab>
-          <Tab>
-            {/* {hotelIcon} */}
-            {<b>🏨 Hotels</b>}
-          </Tab>
+          <Tab>{<b>✈️ Travel</b>}</Tab>
+          <Tab>{<b>🌦️ Weather</b>}</Tab>
+          <Tab>{<b>🏨 Hotels</b>}</Tab>
         </TabList>
 
         <TabPanels>
           <TabPanel>
-            {/* Conditionally render content based on activeTab */}
             {activeTab === 0 &&
               dayMessages.length > 1 &&
               dayMessages.map((message, index) => (
@@ -59,8 +59,16 @@ const Result = ({
             {/* Conditionally render content based on activeTab */}
             {activeTab === 1 && (
               <div className="glass mt-4 mb-2 p-3">
-                <h1 className="orange_gradient text-lg mb-64">
-                  Daily Weather Display
+                <h1 className="lavender_gradient text-lg mb-64 flex items-center gap-2">
+                  <img
+                    className="mb-1"
+                    src={weather}
+                    style={{
+                      width: "30px",
+                      height: "30px",
+                    }}
+                  ></img>
+                  Daily Weather Display{" "}
                 </h1>
               </div>
             )}
