@@ -8,26 +8,19 @@ import { useTab } from "@chakra-ui/react";
 const WeatherTab = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  //   const { isSelected } = useTab();
-  //   console.log("WEATHER TAB", weatherData);
-
-  //   const fetchWeatherData = async () => {
-  //     try {
-  //       const data = await fetchWeatherForecast();
-  //       setWeatherData(data);
-  //       setIsLoading(false);
-  //     } catch (error) {
-  //       console.error("Error fetching weather forecast:", error);
-  //       setIsLoading(false);
-  //     }
-  //   };
-
-  //   useEffect(() => {
-  //     if (isSelected && !weatherData) {
-  //       fetchWeatherData();
-  //     }
-  //   }, []);
-
+  useEffect(() => {
+    setIsLoading(true);
+    fetchWeatherForecast()
+      .then((data) => {
+        setWeatherData(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching weather forecast:", error);
+        setIsLoading(false);
+      });
+  }, []); // The empty dependency array ensures this effect runs only once on component mount.
+  console.log(weatherData);
   return (
     <TabPanel>
       <Card>

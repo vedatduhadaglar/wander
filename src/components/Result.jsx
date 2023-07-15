@@ -1,5 +1,5 @@
 import React from "react";
-import { Tabs, TabList, TabPanels, Tab, useTab } from "@chakra-ui/react";
+import { Tabs, TabList, TabPanels, Tab } from "@chakra-ui/react";
 import TravelTab from "./Tabs/TravelTab";
 import WeatherTab from "./Tabs/WeatherTab";
 import HotelTab from "./Tabs/HotelTab";

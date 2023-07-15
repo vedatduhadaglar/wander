@@ -109,18 +109,18 @@ export const handleAPI = async (
 // Weather API
 export const fetchWeatherForecast = () => {
   const url = `https://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=${OPEN_WEATHER_KEY}`;
-  fetch(url)
+  return fetch(url)
     .then((response) => response.json())
     .then((data) => {
+      console.log(data);
       return data;
     })
     .catch((error) => {
       console.error("Error fetching weather forecast:", error);
+      throw error;
     });
 };
-
 fetchWeatherForecast();
-
 const console_easteregg = `                                                   88                        
                                                    88                        
                                                    88                        
