@@ -3,6 +3,7 @@ import { handleAPI } from "../utils/api";
 import { Autocomplete } from "@react-google-maps/api";
 import { errorGif } from "../assets";
 import Result from "./Result";
+import { exceedingLimitPopUp, validateForm } from "../utils/FormValidate";
 import { useToast } from "@chakra-ui/react";
 
 const Form = () => {
@@ -42,43 +43,13 @@ const Form = () => {
     setSearchValue(place.formatted_address);
   };
 
-  const displayPopUp = () => {
-    message.error("Duration cannot be more than 7 days.", 3);
-  };
-
   const handleDurationChange = (event) => {
     event.preventDefault();
     if (event.target.value > 7) {
+      exceedingLimitPopUp(toast);
       event.target.value = 7;
-      displayPopUp();
     }
     setDurationValue(event.target.value);
-  };
-
-  const validateForm = () => {
-    if (searchValue === "") {
-      toast({
-        title: "Missing Destination",
-        description: "Whoops, you forgot to fill in your destination 😅",
-        status: "warning",
-        duration: 5000,
-        isClosable: true,
-      });
-      return false;
-    }
-
-    if (durationValue === "") {
-      toast({
-        title: "Missing Duration",
-        description: "Don't forget to fill in your travelling duration 😴",
-        status: "warning",
-        duration: 5000,
-        isClosable: true,
-      });
-      return false;
-    }
-
-    return true;
   };
 
   const handleAPIError = (error) => {
@@ -93,7 +64,7 @@ const Form = () => {
     setResponseMessage("");
     setCityImage("");
 
-    if (validateForm()) {
+    if (validateForm(toast, searchValue, durationValue)) {
       try {
         await handleAPI(
           searchValue,
