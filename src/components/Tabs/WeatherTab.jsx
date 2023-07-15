@@ -6,21 +6,21 @@ import { fetchWeatherForecast } from "../../utils/api";
 import { useTab } from "@chakra-ui/react";
 
 const WeatherTab = () => {
-  const [weatherData, setWeatherData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  useEffect(() => {
-    setIsLoading(true);
-    fetchWeatherForecast()
-      .then((data) => {
-        setWeatherData(data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching weather forecast:", error);
-        setIsLoading(false);
-      });
-  }, []); // The empty dependency array ensures this effect runs only once on component mount.
-  console.log(weatherData);
+  //   const [weatherData, setWeatherData] = useState(null);
+  //   const [isLoading, setIsLoading] = useState(false);
+  //   useEffect(() => {
+  //     setIsLoading(true);
+  //     fetchWeatherForecast()
+  //       .then((data) => {
+  //         setWeatherData(data);
+  //         setIsLoading(false);
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error fetching weather forecast:", error);
+  //         setIsLoading(false);
+  //       });
+  //   }, []); // The empty dependency array ensures this effect runs only once on component mount.
+  //   console.log(weatherData);
   return (
     <TabPanel>
       <Card>

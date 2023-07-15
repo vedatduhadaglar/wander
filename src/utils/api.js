@@ -108,11 +108,11 @@ export const handleAPI = async (
 
 // Weather API
 export const fetchWeatherForecast = () => {
-  const url = `https://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=${OPEN_WEATHER_KEY}`;
+  const url = `https://api.openweathermap.org/data/2.5/forecast?q=London&appid=${OPEN_WEATHER_KEY}`;
   return fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      console.log(data.list[0].weather);
       return data;
     })
     .catch((error) => {
@@ -120,7 +120,7 @@ export const fetchWeatherForecast = () => {
       throw error;
     });
 };
-fetchWeatherForecast();
+// fetchWeatherForecast();
 const console_easteregg = `                                                   88                        
                                                    88                        
                                                    88                        
