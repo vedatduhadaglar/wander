@@ -82,6 +82,30 @@ Budget Estimation
   }
 }
 
+export const handleAPI = async (
+  searchValue,
+  durationValue,
+  setDestinationName,
+  setCityImage,
+  setResponseMessage,
+  setLoading,
+  setErrorOccurred
+) => {
+  try {
+    const destination = await getDestination(
+      searchValue,
+      setDestinationName,
+      setCityImage
+    );
+    await getTravelPlan(durationValue, destination, setResponseMessage);
+    setLoading(false);
+  } catch (error) {
+    console.error("Error called from handleAPI", error);
+    setErrorOccurred(true);
+    setLoading(false);
+  }
+};
+
 // Weather API
 export const fetchWeatherForecast = () => {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=${OPEN_WEATHER_KEY}`;

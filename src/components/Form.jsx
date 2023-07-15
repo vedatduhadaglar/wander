@@ -1,14 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import Card from "./Card";
-import {
-  getDestination,
-  getTravelPlan,
-  fetchWeatherForecast,
-} from "../utils/api";
+import { handleAPI } from "../utils/api";
 import { Autocomplete } from "@react-google-maps/api";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-import { errorGif, balloon, weather, hotel } from "../assets";
+import { errorGif } from "../assets";
 import Result from "./Result";
+import { useToast } from "@chakra-ui/react";
 
 const Form = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -21,8 +16,8 @@ const Form = () => {
   const [errorOccurred, setErrorOccurred] = useState(false);
   const [isResultReady, setIsResultReady] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
-
   const dayMessages = responseMessage.split("\n\n");
+  const toast = useToast();
 
   const handleTabChange = (index) => {
     setActiveTab(index);
@@ -60,31 +55,60 @@ const Form = () => {
     setDurationValue(event.target.value);
   };
 
-  const handleButtonClick = async () => {
+  const validateForm = () => {
     if (searchValue === "") {
-      console.log("Whoops, you forgot to fill in your destination 😅");
-    } else if (durationValue === "") {
-      console.log("Don't forget to fill in your travelling duration 😴");
-    } else {
-      setErrorOccurred(false);
-      setLoading(true);
-      setResponseMessage("");
-      setCityImage("");
+      toast({
+        title: "Missing Destination",
+        description: "Whoops, you forgot to fill in your destination 😅",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+      });
+      return false;
+    }
 
-      // TODO: Put this in a seperate function
+    if (durationValue === "") {
+      toast({
+        title: "Missing Duration",
+        description: "Don't forget to fill in your travelling duration 😴",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+      });
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleAPIError = (error) => {
+    console.error("Error called from handleAPI", error);
+    setErrorOccurred(true);
+    setLoading(false);
+  };
+
+  const handleButtonClick = async () => {
+    setErrorOccurred(false);
+    setLoading(true);
+    setResponseMessage("");
+    setCityImage("");
+
+    if (validateForm()) {
       try {
-        const destination = await getDestination(
+        await handleAPI(
           searchValue,
+          durationValue,
           setDestinationName,
-          setCityImage
+          setCityImage,
+          setResponseMessage,
+          setLoading,
+          setErrorOccurred
         );
-        await getTravelPlan(durationValue, destination, setResponseMessage);
-        setLoading(false);
       } catch (error) {
-        console.error("Error called from handlebutton", error);
-        setErrorOccurred(true);
-        setLoading(false);
+        handleAPIError(error);
       }
+    } else {
+      setLoading(false);
     }
   };
 

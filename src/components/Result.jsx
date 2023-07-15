@@ -22,7 +22,12 @@ const Result = ({
         </div>
       </div>
       <Tabs index={activeTab} onChange={handleTabChange}>
-        <TabList className="mx-auto" width={"75%"} justifyContent={"center"}>
+        <TabList
+          className="mx-auto"
+          width={"80%"}
+          justifyContent={"center"}
+          gap={"1rem"}
+        >
           <Tab>
             {/* {balloonIcon} */}
             {<b>✈️ Travel</b>}
