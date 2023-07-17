@@ -17,6 +17,7 @@ const Form = () => {
   const [errorOccurred, setErrorOccurred] = useState(false);
   const [isResultReady, setIsResultReady] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
+
   const dayMessages = responseMessage.split("\n\n");
   const toast = useToast();
 

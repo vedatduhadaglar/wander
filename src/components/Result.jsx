@@ -1,11 +1,12 @@
 import React from "react";
 import { Tabs, TabList, TabPanels, Tab } from "@chakra-ui/react";
+import ScrollButton from "./ScrollButton";
 import TravelTab from "./Tabs/TravelTab";
 import WeatherTab from "./Tabs/WeatherTab";
 import HotelTab from "./Tabs/HotelTab";
-const Result = ({ cityImage, destinationName, activeTab, dayMessages }) => {
+const Result = ({ cityImage, destinationName, dayMessages }) => {
   return (
-    <div className="fade">
+    <section className="fade">
       {/* Places Image Display */}
       <div className="mt-4 mb-6 relative">
         <img
@@ -36,7 +37,8 @@ const Result = ({ cityImage, destinationName, activeTab, dayMessages }) => {
           <HotelTab />
         </TabPanels>
       </Tabs>
-    </div>
+      <ScrollButton />
+    </section>
   );
 };
 

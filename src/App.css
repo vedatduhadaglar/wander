@@ -133,6 +133,37 @@
   }
 }
 
+.scroll-button {
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 40px;
+  right: 20px;
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+  height: 40px;
+  width: 40px;
+  box-shadow: 0 1px 2px #888888;
+  border-radius: 50%;
+  font-size: 20px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.scroll-button:focus {
+  outline: none;
+}
+
+.scroll-button.fade-in {
+  opacity: 1;
+}
+
+.scroll-button.fade-out {
+  opacity: 0;
+}
+
 .pac-item {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
@@ -230,10 +261,6 @@
 .orange_gradient {
   @apply font-black bg-gradient-to-r from-amber-500 to-red-600 bg-clip-text text-transparent;
 }
-
-/* .lavender_gradient {
-  @apply font-black bg-gradient-to-l from-purple-200 via-purple-400 to-purple-800;
-} */
 
 .lavender_gradient {
   @apply font-black bg-gradient-to-l from-purple-400 via-purple-400 to-purple-800  bg-clip-text text-transparent text-lg;

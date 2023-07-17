@@ -10,7 +10,6 @@ const App = () => {
   const toast = useToast();
   useEffect(() => {
     AOS.init();
-
     const toastTimer = setTimeout(() => {
       toast({
         title: "Hey there 🙋🏻‍♂️",
@@ -19,13 +18,12 @@ const App = () => {
         status: "info",
         duration: 8000,
         isClosable: true,
-        // position: "bottom-right",
       });
     }, 800);
 
     // Clear the timeout on component unmount (cleanup)
     return () => clearTimeout(toastTimer);
-  }, [toast]);
+  }, []);
 
   return (
     <main className="fade">
