@@ -108,7 +108,7 @@ const Form = () => {
           </Autocomplete>
         </div>
 
-        <div className="relative flex justify-center items-center w-2/12 sm:w-4/12">
+        <div className="relative flex justify-center items-center w-5/12 sm:w-4/12">
           <input
             type="number"
             min={1}
