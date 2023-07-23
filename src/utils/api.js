@@ -96,13 +96,15 @@ export async function fetchWeatherForecast(city, days) {
     const response = await fetch(url);
     const data = await response.json();
     const forecast = [];
+
     for (let i = 0; i < days; i++) {
-      const weather = data.list[i].weather[0].description;
+      const weather = data.list[i].weather[0].main;
       const temp = Math.round(data.list[i].main.temp - 273.15);
       const iconCode = data.list[i].weather[0].icon;
-      forecast.push({ weather, temp, iconCode });
+      const wind = data.list[i].wind.speed;
+      forecast.push({ weather, temp, iconCode, wind });
     }
-    console.log(forecast);
+
     return forecast;
   } catch (error) {
     console.error("Error fetching weather forecast:", error);

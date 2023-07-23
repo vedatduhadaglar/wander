@@ -18,24 +18,26 @@ const WeatherTab = ({ destination }) => {
 
   return (
     <TabPanel>
-      <Card>
-        <div className="flex items-center justify-center gap-2">
-          <img
-            className="mb-1"
-            src={weather}
-            style={{
-              width: "30px",
-              height: "30px",
-            }}
-            alt="Weather Icon"
-          />
-          <h1 className="lavender_gradient text-lg  text-center">
-            Daily Weather Display
-          </h1>
-        </div>
-        <div className="card-container">
-          {forecast.map((item, index) => (
-            <div className="flex items-center gap-6">
+      <div className="flex items-center justify-center gap-2">
+        <img
+          src={weather}
+          style={{
+            width: "30px",
+            height: "30px",
+          }}
+          alt="Weather Icon"
+        />
+        <h1 className="lavender_gradient text-lg  text-center">
+          Daily Weather Display
+        </h1>
+      </div>
+      <div className="card-container ">
+        {forecast.map((item, index) => (
+          <Card key={index} backgroundColor={"0,0,255"}>
+            <div className="p-2 flex justify-around items-center gap-6 mb-2 ">
+              <span className=" font-bold whitespace-nowrap ">
+                Day {index + 1}
+              </span>
               <img
                 src={`https://openweathermap.org/img/wn/${item.iconCode}.png`}
                 alt="Weather Icon"
@@ -44,14 +46,15 @@ const WeatherTab = ({ destination }) => {
                   height: "100%",
                 }}
               />
-              <p className="font-bold">Day {index + 1}</p>
-              <p>{`${item.weather.replace(/\b\w/g, (char) =>
-                char.toUpperCase()
-              )} ${item.temp}°C`}</p>
+              <span className="whitespace-nowrap ">{`${item.weather.replace(
+                /\b\w/g,
+                (char) => char.toUpperCase()
+              )} ${item.temp}°C`}</span>
+              <span> {item.wind} km/h</span>
             </div>
-          ))}
-        </div>
-      </Card>
+          </Card>
+        ))}
+      </div>
     </TabPanel>
   );
 };
