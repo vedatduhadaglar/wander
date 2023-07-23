@@ -117,6 +117,7 @@ const Form = () => {
         <Result
           cityImage={cityImage}
           destinationName={destinationName}
+          durationValue={durationValue}
           dayMessages={dayMessages}
         />
       )}

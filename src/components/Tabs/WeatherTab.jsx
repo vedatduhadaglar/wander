@@ -4,11 +4,12 @@ import { weather } from "../../assets";
 import Card from "../Card";
 import { fetchWeatherForecast } from "../../utils/api";
 
-const WeatherTab = ({ destination }) => {
+const WeatherTab = ({ destination, durationValue }) => {
   const [forecast, setForecast] = useState([]);
 
   const handleFetchWeather = async () => {
-    const data = await fetchWeatherForecast(destination, 3);
+    console.log(durationValue);
+    const data = await fetchWeatherForecast(destination, durationValue);
     setForecast(data);
   };
 

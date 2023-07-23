@@ -4,7 +4,8 @@ import ScrollButton from "./ScrollButton";
 import TravelTab from "./Tabs/TravelTab";
 import WeatherTab from "./Tabs/WeatherTab";
 import HotelTab from "./Tabs/HotelTab";
-const Result = ({ cityImage, destinationName, dayMessages }) => {
+const Result = ({ cityImage, destinationName, dayMessages, durationValue }) => {
+  console.log(durationValue);
   return (
     <section className="fade">
       <div className="mt-4 mb-6 relative">
@@ -32,7 +33,10 @@ const Result = ({ cityImage, destinationName, dayMessages }) => {
 
         <TabPanels>
           <TravelTab dayMessages={dayMessages} />
-          <WeatherTab destination={destinationName} />
+          <WeatherTab
+            destination={destinationName}
+            durationValue={durationValue}
+          />
           <HotelTab />
         </TabPanels>
       </Tabs>
