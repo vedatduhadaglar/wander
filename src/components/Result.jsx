@@ -27,7 +27,7 @@ const Result = ({ cityImage, destinationName, dayMessages }) => {
           gap={"1rem"}
         >
           <Tab>{<b>✈️ Travel</b>}</Tab>
-          <Tab>{<b>🌦️ Weather</b>}</Tab>
+          <Tab>{<b>🌤️ Weather</b>}</Tab>
           <Tab>{<b>🏨 Hotels</b>}</Tab>
         </TabList>
 

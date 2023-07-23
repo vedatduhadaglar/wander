@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { handleAPI } from "../utils/api";
 import { Autocomplete } from "@react-google-maps/api";
+import LocationAutocomplete from "./AutoComplete";
+import SubmitButton from "./SubmitButton";
 import { errorGif } from "../assets";
 import Result from "./Result";
 import { exceedingLimitPopUp, validateForm } from "../utils/FormValidate";
@@ -88,25 +90,12 @@ const Form = () => {
     <section className="mt-8 w-full max-w-xl sm:w-6/12">
       <div className="flex w-full gap-2 mb-1">
         <div className="w-full">
-          <Autocomplete
-            onLoad={(autocomplete) => {
-              autocompleteRef.current = autocomplete;
-              autocomplete.setFields(["formatted_address"]);
-            }}
-            onPlaceChanged={handlePlaceSelect}
-            options={{
-              types: ["(cities)"],
-            }}
-          >
-            <input
-              type="text"
-              onChange={handleSearchChange}
-              placeholder="Where are you planning to go? ✈️"
-              required
-              value={searchValue}
-              className="input_styles peer"
-            />
-          </Autocomplete>
+          <LocationAutocomplete
+            searchValue={searchValue}
+            handleSearchChange={handleSearchChange}
+            handlePlaceSelect={handlePlaceSelect}
+            autocompleteRef={autocompleteRef}
+          />
         </div>
 
         <div className="relative flex justify-center items-center w-4/12 sm:w-3/12">
@@ -117,29 +106,12 @@ const Form = () => {
             placeholder=" Days 🕑"
             required
             onChange={handleDurationChange}
-            className="input_styles peer"
+            className="input_styles"
           />
         </div>
       </div>
 
-      <button
-        type="submit"
-        className={
-          loading
-            ? "w-full gray_btn bg-pink-300 border border-gray-200 "
-            : "w-full gray_btn bg-white input_styles"
-        }
-        onClick={handleButtonClick}
-      >
-        {loading ? (
-          <span>
-            Loading...<span className="loading-emoji"></span>
-          </span>
-        ) : (
-          "Plan Your Journey"
-        )}
-      </button>
-
+      <SubmitButton loading={loading} handleButtonClick={handleButtonClick} />
       {errorOccurred && (
         <div className="glass rounded mt-4 mb-2">
           <img className="fade w-full" src={errorGif}></img>
