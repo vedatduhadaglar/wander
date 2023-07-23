@@ -7,7 +7,6 @@ import HotelTab from "./Tabs/HotelTab";
 const Result = ({ cityImage, destinationName, dayMessages }) => {
   return (
     <section className="fade">
-      {/* Places Image Display */}
       <div className="mt-4 mb-6 relative">
         <img
           src={cityImage}

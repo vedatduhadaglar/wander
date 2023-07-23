@@ -18,14 +18,9 @@ const Form = () => {
   const [loading, setLoading] = useState(false);
   const [errorOccurred, setErrorOccurred] = useState(false);
   const [isResultReady, setIsResultReady] = useState(false);
-  const [activeTab, setActiveTab] = useState(0);
 
   const dayMessages = responseMessage.split("\n\n");
   const toast = useToast();
-
-  const handleTabChange = (index) => {
-    setActiveTab(index);
-  };
 
   // When both the image and the travel plan is fetched, resultready is true
   useEffect(() => {
@@ -122,8 +117,6 @@ const Form = () => {
         <Result
           cityImage={cityImage}
           destinationName={destinationName}
-          activeTab={activeTab}
-          handleTabChange={handleTabChange}
           dayMessages={dayMessages}
         />
       )}
