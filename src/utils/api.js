@@ -90,13 +90,20 @@ export const handleAPI = async (
 };
 
 // Weather API
-export async function fetchWeatherForecast(city) {
+export async function fetchWeatherForecast(city, days) {
   try {
-    const url = WEATHER_API_ENDPOINT(city);
+    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${OPEN_WEATHER_KEY}`;
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data.list[0].weather);
-    return data;
+    const forecast = [];
+    for (let i = 0; i < days; i++) {
+      const weather = data.list[i].weather[0].description;
+      const temp = Math.round(data.list[i].main.temp - 273.15);
+      const iconCode = data.list[i].weather[0].icon;
+      forecast.push({ weather, temp, iconCode });
+    }
+    console.log(forecast);
+    return forecast;
   } catch (error) {
     console.error("Error fetching weather forecast:", error);
     throw error;

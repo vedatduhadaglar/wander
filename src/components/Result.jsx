@@ -33,7 +33,7 @@ const Result = ({ cityImage, destinationName, dayMessages }) => {
 
         <TabPanels>
           <TravelTab dayMessages={dayMessages} />
-          <WeatherTab />
+          <WeatherTab destination={destinationName} />
           <HotelTab />
         </TabPanels>
       </Tabs>

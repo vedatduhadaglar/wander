@@ -1,42 +1,56 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { TabPanel } from "@chakra-ui/react";
 import { weather } from "../../assets";
 import Card from "../Card";
 import { fetchWeatherForecast } from "../../utils/api";
-import { useTab } from "@chakra-ui/react";
 
-const WeatherTab = () => {
-  //   const [weatherData, setWeatherData] = useState(null);
-  //   const [isLoading, setIsLoading] = useState(false);
-  //   useEffect(() => {
-  //     setIsLoading(true);
-  //     fetchWeatherForecast()
-  //       .then((data) => {
-  //         setWeatherData(data);
-  //         setIsLoading(false);
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error fetching weather forecast:", error);
-  //         setIsLoading(false);
-  //       });
-  //   }, []); // The empty dependency array ensures this effect runs only once on component mount.
-  //   console.log(weatherData);
+const WeatherTab = ({ destination }) => {
+  const [forecast, setForecast] = useState([]);
+
+  const handleFetchWeather = async () => {
+    const data = await fetchWeatherForecast(destination, 3);
+    setForecast(data);
+  };
+
   return (
     <TabPanel>
-      <Card>
-        <h1 className="lavender_gradient text-lg mb-64 flex items-center gap-2">
-          <img
-            className="mb-1"
-            src={weather}
-            style={{
-              width: "30px",
-              height: "30px",
-            }}
-            alt="Weather Icon"
-          />
+      <div className="flex items-center justify-center gap-2">
+        <img
+          className="mb-1"
+          src={weather}
+          style={{
+            width: "30px",
+            height: "30px",
+          }}
+          alt="Weather Icon"
+        />
+        <h1 className="lavender_gradient text-lg  text-center">
           Daily Weather Display
         </h1>
-      </Card>
+      </div>
+      <div className="card-container">
+        {forecast.map((item, index) => (
+          <Card key={index} backgroundColor={"0,0,255"}>
+            <p className="font-bold">Day {index + 1}</p>
+            <div className="flex items-center gap-6">
+              <img
+                src={`https://openweathermap.org/img/wn/${item.iconCode}.png`}
+                alt="Weather Icon"
+                style={{
+                  width: "60px",
+                  height: "100%",
+                }}
+              />
+
+              <p>{`${item.weather.replace(/\b\w/g, (char) =>
+                char.toUpperCase()
+              )} ${item.temp}°C`}</p>
+            </div>
+          </Card>
+        ))}
+      </div>
+
+      <button onClick={handleFetchWeather}>Fetch Weather</button>
     </TabPanel>
   );
 };
