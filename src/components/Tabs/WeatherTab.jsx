@@ -17,6 +17,7 @@ const WeatherTab = ({ destination, durationValue }) => {
     handleFetchWeather();
   }, [destination]);
 
+  // test
   return (
     <TabPanel>
       <div className="flex items-center justify-center gap-2">
