@@ -95,14 +95,19 @@ export async function fetchWeatherForecast(city, days) {
     const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${OPEN_WEATHER_KEY}`;
     const response = await fetch(url);
     const data = await response.json();
+    console.log(data);
     const forecast = [];
 
     for (let i = 0; i < days; i++) {
-      const weather = data.list[i].weather[0].main;
-      const temp = Math.round(data.list[i].main.temp - 273.15);
-      const iconCode = data.list[i].weather[0].icon;
-      const wind = data.list[i].wind.speed;
-      forecast.push({ weather, temp, iconCode, wind });
+      const item = data.list[i];
+
+      const time = item.dt_txt;
+      const weather = item.weather[0].main;
+      const temp = Math.round(item.main.temp - 273.15);
+      let iconCode = item.weather[0].icon;
+      iconCode = iconCode.replace(/n/g, "d");
+      const wind = item.wind.speed;
+      forecast.push({ weather, temp, iconCode, wind, time });
     }
 
     return forecast;

@@ -7,7 +7,7 @@ const HotelTab = () => {
     <TabPanel>
       <Card>
         <h1 className="red_gradient">Hotel Booking</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Soon you will be able to book hotels from here! 😀</p>
       </Card>
     </TabPanel>
   );
