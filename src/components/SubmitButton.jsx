@@ -13,7 +13,8 @@ const SubmitButton = ({ loading, handleButtonClick }) => {
     >
       {loading ? (
         <span>
-          Loading...<span className="loading-emoji"></span>
+          <b> Loading...</b>
+          <span className="loading-emoji"></span>
         </span>
       ) : (
         "Plan Your Journey"
