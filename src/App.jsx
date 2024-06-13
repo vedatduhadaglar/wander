@@ -12,9 +12,9 @@ const App = () => {
     AOS.init();
     const toastTimer = setTimeout(() => {
       toast({
-        title: "Hey there 🙋🏻‍♂️",
+        title: "Under Maintenance 👷🏼",
         description:
-          "Due to the high demand on the GPT API, load times might be long depending on when you use the app. Sorry for the incovinience and good travelling. \n -Vedat",
+          "Due to OpenAI's pricing policy change, Wander is temporarily unavailable. The issue will be fixed ASAP. \n -Vedat",
         status: "info",
         duration: 8000,
         isClosable: true,
